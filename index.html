@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .blur-background {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        .dialog-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+        .dialog {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            z-index: 10000;
+        }
+        .dialog img {
+        display: block;
+			margin: auto;
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .dialog h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+        .dialog p {
+            font-size: 16px;
+            color: #666;
+            margin: 0 0 20px 0;
+        }
+        .dialog a {
+            text-decoration: none;
+        }
+        .dialog a button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .dialog a button:hover {
+            background-color: #1668c1;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="body">
+    <div id="content">
+        <!-- Your original page content goes here -->
+        <p>Original content of the page.</p>
+    </div>
+
+    <div id="dialogContainer" class="dialog-container hidden">
+        <div class="dialog">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisK3LmHEb5zxn5Lt7YyjVwhEvuT7nSETvOEdKSrPz3v2nM8khaeum1bCRaSzMA1FlEqFpAArO7A_i8fFGWTIF1aL7OHtVnj-RYCZ1gKSmNaMJzSkj0s2nSPyMSEMfwc4T3IiCX7V_mE3AHD8GWPAqyHYQAc7Vr98zgfLbjk-8LKnkT5Sxi_6axSar8EY0/s1080/ca.png" alt="Jesse Network">
+            <h1>Jesse Network ❤️‍🔥</h1>
+            <p>Everything Made Simple Easy and Free</p>
+            <a href="https://t.me/+6qO26rkVU5VkZjQ0" id="joinButton">
+                <button>Join Us on Telegram</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the dialog
+        function showDialog() {
+            document.getElementById('content').classList.add('blur-background');
+            document.getElementById('dialogContainer').classList.remove('hidden');
+        }
+
+        // Function to hide the dialog
+        function hideDialog() {
+            document.getElementById('content').classList.remove('blur-background');
+            document.getElementById('dialogContainer').classList.add('hidden');
+        }
+
+        // Function to set a flag in localStorage
+        function setDialogFlag() {
+            localStorage.setItem('joinedTelegram', 'true');
+        }
+
+        // Check if the user has already joined Telegram
+        window.onload = function() {
+            if (!localStorage.getItem('joinedTelegram')) {
+                showDialog();
+            }
+        };
+
+        // Add event listener to the join button to hide the dialog and set the flag
+        document.getElementById('joinButton').addEventListener('click', function() {
+            setDialogFlag();
+            hideDialog();
+        });
+    </script>
+</body>
+</html>
